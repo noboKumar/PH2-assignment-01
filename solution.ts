@@ -14,4 +14,11 @@ const formatValue = (
   }
 };
 
-
+const getLength = (value: string | any[]): number => {
+  if (Array.isArray(value)) {
+    return value.length;
+  } else if (typeof value === "string") {
+    return value.length;
+  }
+  return 0;
+};
