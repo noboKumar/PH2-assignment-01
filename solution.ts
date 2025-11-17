@@ -95,10 +95,29 @@ const getUniqueValues = (
     }
   }
 
-  for (let i = 0; i < arr1.length; i++) {
+  for (let i = 0; i < arr2.length; i++) {
     if (!includes(arr2[i])) {
       result.push(arr2[i]);
     }
   }
   return result;
+};
+
+const calculateTotalPrice = (
+  products: {
+    name: string;
+    price: number;
+    quantity: number;
+    discount?: number;
+  }[]
+) => {
+  return products
+    .map((product) => {
+      const productTotal = product.price * product.quantity;
+      if (product.discount) {
+        return productTotal * (1 - product.discount / 100);
+      }
+      return productTotal;
+    })
+    .reduce((acc, curr) => acc + curr, 0);
 };
