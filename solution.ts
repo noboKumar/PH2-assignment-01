@@ -73,3 +73,32 @@ const printBookDetails = (obj: Book) => {
     }, Available: ${obj.isAvailable ? "Yes" : "No"}`
   );
 };
+
+const getUniqueValues = (
+  arr1: (string | number)[],
+  arr2: (string | number)[]
+): (string | number)[] => {
+  const result: (string | number)[] = [];
+
+  const includes = (value: string | number): boolean => {
+    for (let i = 0; i < result.length; i++) {
+      if (result[i] === value) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (!includes(arr1[i])) {
+      result.push(arr1[i]);
+    }
+  }
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (!includes(arr2[i])) {
+      result.push(arr2[i]);
+    }
+  }
+  return result;
+};
